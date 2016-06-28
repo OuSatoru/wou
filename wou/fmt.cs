@@ -12,6 +12,13 @@ namespace wou
         {
             string[] lns = ori.Split('\n');
             lns[0] = addfont(lns[0], "微软雅黑");
+            if (!lns[1].StartsWith("{\\colortbl"))
+            {
+                List<string> s = new List<string>(lns);
+                s.Insert(1, "{\\colortbl ;");
+                lns = s.ToArray();
+            }
+
         }
         static string addfont(string line, string font)
         {
@@ -40,6 +47,21 @@ namespace wou
                 t += "\\'" + bt[i].ToString("x2");
             }
             return t;
+        }
+        static string addcolor(string line, int red, int green, int blue)
+        {
+            string newcolor;
+            Regex rgb = new Regex(@"(?<=\\(red|green|blue))(\d*?)(?=\\|;)");
+            MatchCollection mc = rgb.Matches(line);
+            for(int i = 0; i < mc.Count; i+=3)
+            {
+                if (red.ToString() == mc[i].Value && green.ToString() == mc[i + 1].Value && blue.ToString() == mc[i + 2].Value)
+                {
+                    return line;
+                }
+            }
+            newcolor = "\\red" + red.ToString() + "\\green" + green.ToString() + "\\blue" + blue.ToString() + ";";
+            return line.Insert(line.Length - 1, newcolor);
         }
     }
 }
