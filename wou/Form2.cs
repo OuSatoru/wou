@@ -18,7 +18,13 @@ namespace wou
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //textBox2.Text = fmt.addfont(textBox1.Text, "微软雅黑");
+            textBox2.Text = fmt.rtfmt(textBox1.Text);
+            richTextBox1.Rtf = textBox2.Text;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
