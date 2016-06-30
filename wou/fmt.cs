@@ -81,7 +81,7 @@ namespace wou
             newcolor = "\\red" + red.ToString() + "\\green" + green.ToString() + "\\blue" + blue.ToString() + ";";
             return line.Insert(line.Length - 1, newcolor);
         }
-        static void ctrld(ref string ori, string dest, string font = "宋体", int fsize = 18, params int[] rgb)
+        static void ctrld(ref string ori, string dest, string font = "宋体", int fsize = 18, bool bold = false, bool italic = false, params int[] rgb)
         {
             if (ori.Contains(dest))
             {
@@ -91,18 +91,24 @@ namespace wou
                 string fontf = rgxf.Match(ori).Value;
                 string fontsf = "\\fs" + fsize.ToString();
                 int colori = 0;
-                string colorf;
-                MatchCollection colormc = rgxc.Matches(ori);
-                for (int i = 0; i < colormc.Count; i += 3)
+                string colorf = "";
+                if (rgb != new int[] { 0, 0, 0 })
                 {
-                    if(rgb[0].ToString()==colormc[i].Value&& rgb[1].ToString() == colormc[i+1].Value && rgb[2].ToString() == colormc[i + 2].Value)
+                    MatchCollection colormc = rgxc.Matches(ori);
+                    for (int i = 0; i < colormc.Count; i += 3)
                     {
-                        colori = i / 3;
-                        break;
+                        if (rgb[0].ToString() == colormc[i].Value && rgb[1].ToString() == colormc[i + 1].Value && rgb[2].ToString() == colormc[i + 2].Value)
+                        {
+                            colori = i / 3;
+                            break;
+                        }
                     }
+                    colorf = "\\cf" + colori.ToString();
                 }
-                colorf = "\\cf" + colori.ToString();
-                
+                string boldf = "";
+                if (!bold) {
+                    boldf = 
+                }
             }
         }
     }
