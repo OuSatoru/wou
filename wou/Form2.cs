@@ -20,11 +20,16 @@ namespace wou
         {
             textBox2.Text = fmt.rtfmt(textBox1.Text);
             richTextBox1.Rtf = textBox2.Text;
-        }
+            }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            textBox3.Text = richTextBox1.Rtf;
         }
     }
 }
