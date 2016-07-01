@@ -12,7 +12,7 @@ namespace wou
         public const string threehash = @"(?<=\s)(###(?!#).*)(?=\\.*par)";
         public const string fourhash = @"(?<=\s)(####.*)(?=\\.*par)";
         public const string exclamation = @"\!\[.*\]\(.*\)";
-        public const string oneasterisk = @"\*((?!\*).)+\*";
+        public const string oneasterisk = @"\*(?!\*)[\s\S]*?\*";
         public const string oneunder = @"_((?!_).)+_";
         public const string twoasterisk = @"\*\*(\s|\S)*?\*\*";
         public const string twounder = @"__(\s|\S)*?__";

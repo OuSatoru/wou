@@ -117,12 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fnil\fcharset0 Consolas;}{\f1\fmodern\fprq6\fcharset134 \'cb\'ce\'cc\'e5;}}
-\viewkind4\uc1\pard\lang2052\f0\fs18 # MM\par
-## dd\par
-### fff\par
-dfsf![dd](http://mouapp.com/Mou_128.png "\f1\'b8\'c9")555\f0\par
-}</value>
-  </data>
 </root>

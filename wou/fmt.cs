@@ -23,6 +23,7 @@ namespace wou
             }
             lns[1] = addcolor(lns[1], 0, 0, 160);
             lns[1] = addcolor(lns[1], 0, 50, 160);
+            lns[1] = addcolor(lns[1], 255, 0, 0);
             ori = string.Join("\n", lns);
             /*全行、包括、关键字*/
             ctrld(ref ori, style.onehash, "Consolas", 48, rgb: new int[] { 0, 0, 160 });
@@ -30,6 +31,9 @@ namespace wou
             ctrld(ref ori, style.threehash, "Consolas", 32, rgb: new int[] { 0, 50, 160 });
             ctrld(ref ori, style.fourhash, "Consolas", 32, rgb: new int[] { 0, 50, 160 });
             ctrld(ref ori, style.exclamation, rgb: new int[] { 0, 0, 160 });
+            
+            //ctrld(ref ori, style.oneasterisk, italic: true, rgb: new int[] { 255, 0, 0 });
+            ctrld(ref ori, style.twoasterisk, bold: true, rgb: new int[] { 255, 0, 0 });
             cjk(ref ori);
             return ori;
         }
@@ -167,7 +171,7 @@ namespace wou
                 MatchCollection mc = rgxd.Matches(ori);
                 for(int i = 0; i < mc.Count; i++)
                 {
-                    ori = rgxd.Replace(ori, colorf + fontf + fontsf + boldf + italicf + underf + " " + mc[i].Value);
+                    ori = rgxd.Replace(ori, colorf + fontf + fontsf + boldf + italicf + underf + " " + mc[i].Value+"\\b0\\i0\\ulnone");
                 }
                 
             }
