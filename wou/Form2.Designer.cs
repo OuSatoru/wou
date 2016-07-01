@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -52,9 +53,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(216, 229);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "{\\rtf1\\ansi\\ansicpg936\\deff0\\deflang1033\\deflangfe2052{\\fonttbl{\\f0\\fnil\\fcharset" +
-    "134 \\\'cb\\\'ce\\\'cc\\\'e5;}{\\f1\\fswiss\\fcharset0 Arial;}}\r\n\\viewkind4\\uc1\\pard\\lang20" +
-    "52\\f0\\fs18 Mou#mm\\f0\\par\r\n}";
+            this.textBox1.Text = resources.GetString("textBox1.Text");
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2

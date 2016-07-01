@@ -20,9 +20,14 @@ namespace wou
                 lns = s.ToArray();
             }
             lns[1] = addcolor(lns[1], 0, 0, 160);
+            lns[1] = addcolor(lns[1], 0, 50, 160);
             ori = string.Join("\n", lns);
-            //全行、包括、关键字
-            ctrld(ref ori, @"(#.*?)(?=\\.*par)", "Consolas", 48, rgb: new int[] { 0, 0, 160 });
+            /*全行、包括、关键字
+            ctrld(ref ori, style.onehash, "Consolas", 48, rgb: new int[] { 0, 0, 160 });
+            ctrld(ref ori, style.twohash, "Consolas", 40, rgb: new int[] { 0, 0, 160 });
+            ctrld(ref ori, style.threehash, "Consolas", 32, rgb: new int[] { 0, 50, 160 });
+            ctrld(ref ori, style.fourhash, "Consolas", 32, rgb: new int[] { 0, 50, 160 });
+            ctrld(ref ori, style.exclamation, rgb: new int[] { 0, 0, 160 });*/
             return ori;
         }
         static string addfont(string line, string font)
@@ -84,7 +89,7 @@ namespace wou
             newcolor = "\\red" + red.ToString() + "\\green" + green.ToString() + "\\blue" + blue.ToString() + ";";
             return line.Insert(line.Length - 1, newcolor);
         }
-        static void ctrld(ref string ori, string dest, string font = "宋体", int fsize = 18, bool bold = false, bool italic = false,bool under = false, params int[] rgb)
+        /*static void ctrld(ref string ori, string dest, string font = "Consolas", int fsize = 0, bool bold = false, bool italic = false,bool under = false, params int[] rgb)
         {
             Regex rgxd = new Regex(dest);
             if (rgxd.IsMatch(ori))
@@ -93,7 +98,7 @@ namespace wou
                 //Regex rgxc = new Regex(@"{\\colortbl.*blue\d+;}");
                 Regex rgxc = new Regex(@"(?<=\\(red|green|blue))(\d*?)(?=\\|;)");
                 string fontf = rgxf.Match(ori).Value;
-                string fontsf = "\\fs" + fsize.ToString();
+                string fontsf = fsize == 0 ? "" : "\\fs" + fsize.ToString();
                 int colori = 0;
                 string colorf = "";
                 if (rgb != new int[] { 0, 0, 0 })
@@ -115,11 +120,38 @@ namespace wou
                 string itaticn = "\\i0";
                 string underf = under ? "\\ul" : "";
                 string undern = "\\ulnone";
-                Regex rgxtype = new Regex(@"(\\((f|fs|cf|i|b)\d+)|ul)(?=\S*? #\S*)");
-                ori = rgxtype.Replace(ori, "");
-                ori = rgxd.Replace(ori, colorf + fontf + fontsf + boldf + italicf + underf + " " + rgxd.Match(ori).Value);
+                //Regex rgxtype;
+                switch (dest)
+                {
+                    case style.onehash:
+                        Regex rgxtype = new Regex(style.findonehash);
+                        ori = rgxtype.Replace(ori, "");
+                        break;
+                    case style.twohash:
+                        Regex rgxtype2 = new Regex(style.findtwohash);
+                        ori = rgxtype2.Replace(ori, "");
+                        break;
+                    case style.threehash:
+                        Regex rgxtype3 = new Regex(style.findthreehash);
+                        ori = rgxtype3.Replace(ori, "");
+                        break;
+                    case style.fourhash:
+                        Regex rgxtype4 = new Regex(style.findfourhash);
+                        ori = rgxtype4.Replace(ori, "");
+                        break;
+                    default:
+                        break;
+                }
+                //Regex rgxtype = new Regex(@"(\\((f|fs|cf)\d+)|ul|i|b)(?=\S*? #\S*)");
+                //ori = rgxtype.Replace(ori, "");
+                MatchCollection mc = rgxd.Matches(ori);
+                for(int i = 0; i < mc.Count; i++)
+                {
+                    ori = rgxd.Replace(ori, colorf + fontf + fontsf + boldf + italicf + underf + " " + mc[i].Value);
+                }
+                
             }
-        }
+        }*/
         static string removemany(string ori, params string[] st)
         {
             foreach(string s in st)
