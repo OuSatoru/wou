@@ -30,7 +30,6 @@
         {
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -52,20 +51,11 @@
             this.webBrowser1.Size = new System.Drawing.Size(139, 384);
             this.webBrowser1.TabIndex = 1;
             // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(343, 39);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(100, 96);
-            this.richTextBox2.TabIndex = 2;
-            this.richTextBox2.Text = "";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(491, 384);
-            this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.richTextBox1);
             this.Name = "Form1";
@@ -80,7 +70,6 @@
 
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }
 

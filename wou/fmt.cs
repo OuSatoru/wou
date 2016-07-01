@@ -13,6 +13,8 @@ namespace wou
         {
             string[] lns = ori.Split('\n');
             lns[0] = addfont(lns[0], "Consolas");
+            lns[0] = addfont(lns[0], "微软雅黑");
+            
             if (!lns[1].StartsWith("{\\colortbl"))
             {
                 List<string> s = new List<string>(lns);
@@ -22,12 +24,13 @@ namespace wou
             lns[1] = addcolor(lns[1], 0, 0, 160);
             lns[1] = addcolor(lns[1], 0, 50, 160);
             ori = string.Join("\n", lns);
-            /*全行、包括、关键字
+            /*全行、包括、关键字*/
             ctrld(ref ori, style.onehash, "Consolas", 48, rgb: new int[] { 0, 0, 160 });
             ctrld(ref ori, style.twohash, "Consolas", 40, rgb: new int[] { 0, 0, 160 });
             ctrld(ref ori, style.threehash, "Consolas", 32, rgb: new int[] { 0, 50, 160 });
             ctrld(ref ori, style.fourhash, "Consolas", 32, rgb: new int[] { 0, 50, 160 });
-            ctrld(ref ori, style.exclamation, rgb: new int[] { 0, 0, 160 });*/
+            ctrld(ref ori, style.exclamation, rgb: new int[] { 0, 0, 160 });
+            cjk(ref ori);
             return ori;
         }
         static string addfont(string line, string font)
@@ -56,6 +59,23 @@ namespace wou
             }
             
             return line.Insert(line.Length - 1, newfont);
+        }
+        static string torgxbyte(string cha)
+        {
+            byte[] bt = Encoding.GetEncoding("gbk").GetBytes(cha);
+            if (bt.Length == cha.Length)
+            {
+                return cha;
+            }
+            else
+            {
+                string t = "";
+                for (int i = 0; i < bt.Length; i++)
+                {
+                    t += "\\\\'" + bt[i].ToString("x2");
+                }
+                return t;
+            }
         }
         static string tobyte(string cha)
         {
@@ -89,12 +109,12 @@ namespace wou
             newcolor = "\\red" + red.ToString() + "\\green" + green.ToString() + "\\blue" + blue.ToString() + ";";
             return line.Insert(line.Length - 1, newcolor);
         }
-        /*static void ctrld(ref string ori, string dest, string font = "Consolas", int fsize = 0, bool bold = false, bool italic = false,bool under = false, params int[] rgb)
+        static void ctrld(ref string ori, string dest, string font = "Consolas", int fsize = 0, bool bold = false, bool italic = false,bool under = false, params int[] rgb)
         {
             Regex rgxd = new Regex(dest);
             if (rgxd.IsMatch(ori))
             {
-                Regex rgxf = new Regex(@"(?<={)(\\f\d+)(?=\\f((?!}).)*" + tobyte(font) + @")");
+                Regex rgxf = new Regex(@"(?<={)(\\f\d+)(?=\\f((?!}).)*" + torgxbyte(font) + @")");
                 //Regex rgxc = new Regex(@"{\\colortbl.*blue\d+;}");
                 Regex rgxc = new Regex(@"(?<=\\(red|green|blue))(\d*?)(?=\\|;)");
                 string fontf = rgxf.Match(ori).Value;
@@ -151,7 +171,41 @@ namespace wou
                 }
                 
             }
-        }*/
+        }
+        static void cjk(ref string ori)
+        {
+            string[] lns = ori.Split('\n');
+            string line1 = lns[0];
+            string line2 = "";
+            Regex rgxf = new Regex(@"(?<={)(\\f\d+)(?=\\f((?!}).)*" + torgxbyte("微软雅黑") + @")");
+            Regex rgxfs = new Regex(@"(?<={)(\\f\d+)(?=\\f((?!}).)*" + torgxbyte("宋体") + @")");
+            Regex rgxfc = new Regex(@"(?<={)(\\f\d+)(?=\\f((?!}).)*Consolas)");
+            string yahei = rgxf.Match(line1).Value;
+            string song = rgxfs.Match(line1).Value;
+            string consolas = rgxfc.Match(line1).Value;
+            List<string> ls = lns.ToList();
+            string maintext;
+            if (lns[1].StartsWith("{\\colortbl"))
+            {
+                line2 = lns[1];
+                ls.RemoveRange(0, 2);
+                maintext = string.Join("\n", ls.ToArray());
+            }
+            else
+            {
+
+                ls.RemoveAt(0);
+                maintext = string.Join("\n", ls.ToArray());
+            }
+            Regex rgxc = new Regex(@"(\\f\d+)(\\'([a-z0-9]){2})+");
+            MatchCollection mc = rgxc.Matches(maintext);
+            for(int i = 0; i < mc.Count; i++)
+            {
+                maintext = rgxc.Replace(maintext, yahei + mc[i].Value.Replace(song, "") + consolas);
+            }
+            string[] s = new string[] { line1, line2, maintext };
+            ori = string.Join("\n", s);
+        }
         static string removemany(string ori, params string[] st)
         {
             foreach(string s in st)

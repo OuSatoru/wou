@@ -7,7 +7,6 @@ namespace wou
 {
     class style
     {
-        /*  regexes for rtf
         public const string onehash = @"(?<=\s)(#(?!#).*)(?=\\.*par)";
         public const string twohash = @"(?<=\s)(##(?!#).*)(?=\\.*par)";
         public const string threehash = @"(?<=\s)(###(?!#).*)(?=\\.*par)";
@@ -23,8 +22,8 @@ namespace wou
         public const string findtwohash = @"(\\((f|fs|cf)\d+)|ul|i|b)(?=\S*? ##(?!#)\S*)";
         public const string findthreehash = @"(\\((f|fs|cf)\d+)|ul|i|b)(?=\S*? ###(?!#)\S*)";
         public const string findfourhash = @"(\\((f|fs|cf)\d+)|ul|i|b)(?=\S*? ####\S*)";
-        */
-        public const string onehash = @"(^|\s)#(?!#).*";
+        
+        /*public const string onehash = @"(^|\s)#(?!#).*";
         public const string twohash = @"(^|\s)##(?!#).*";
         public const string threehash = @"(^|\s)###(?!#).*";
         public const string fourhash = @"(^|\s)####.*";
@@ -39,5 +38,6 @@ namespace wou
         public const string findtwohash = @"(\\((f|fs|cf)\d+)|ul|i|b)(?=\S*? ##(?!#)\S*)";
         public const string findthreehash = @"(\\((f|fs|cf)\d+)|ul|i|b)(?=\S*? ###(?!#)\S*)";
         public const string findfourhash = @"(\\((f|fs|cf)\d+)|ul|i|b)(?=\S*? ####\S*)";
+        */
     }
 }

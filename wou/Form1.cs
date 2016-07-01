@@ -40,7 +40,6 @@ namespace wou
             webBrowser1.DocumentText = html.head + 
                 richTextBox1.Text + 
                 html.end;*/
-            richTextBox2.Rtf = richTextBox1.Rtf;
             
         }
 
