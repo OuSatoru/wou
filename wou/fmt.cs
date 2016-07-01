@@ -32,7 +32,7 @@ namespace wou
             ctrld(ref ori, style.fourhash, "Consolas", 32, rgb: new int[] { 0, 50, 160 });
             ctrld(ref ori, style.exclamation, rgb: new int[] { 0, 0, 160 });
             
-            //ctrld(ref ori, style.oneasterisk, italic: true, rgb: new int[] { 255, 0, 0 });
+            ctrld(ref ori, style.oneasterisk, italic: true, rgb: new int[] { 255, 0, 0 });
             ctrld(ref ori, style.twoasterisk, bold: true, rgb: new int[] { 255, 0, 0 });
             cjk(ref ori);
             return ori;
