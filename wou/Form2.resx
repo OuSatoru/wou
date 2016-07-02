@@ -117,4 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fnil\fcharset0 Consolas;}{\f1\fnil Consolas;}}
+{\colortbl ;\red0\green0\blue160;\red0\green0\blue0;\red0\green50\blue160;\red0\green255\blue0;}
+\viewkind4\uc1\pard\cf1\lang2052\f0\fs48 #daaa\cf2\f1\fs23\par
+sdfasdf\par
+##ddd\cf2\f1\fs23\par
+###ddd\cf2\f1\fs23\par
+sdfs\par
+sdf\par
+####sdfs\cf2\f1\fs23\par
+(sdfsd)\cf2\f1\par
+[sdfsdf]\cf2\f1\par
+sdfs\par
+![sdfsf](sdfsd)\cf2\f1\par
+\cf1\fs48\par
+}</value>
+  </data>
 </root>
