@@ -24,16 +24,24 @@ namespace wou
             lns[1] = addcolor(lns[1], 0, 0, 160);
             lns[1] = addcolor(lns[1], 0, 50, 160);
             lns[1] = addcolor(lns[1], 255, 0, 0);
+            lns[1] = addcolor(lns[1], 0, 255, 0);
+            lns[1] = addcolor(lns[1], 0, 0, 255);
             ori = string.Join("\n", lns);
             /*全行、包括、关键字*/
+            delfont(ref ori);
             ctrld(ref ori, style.onehash, "Consolas", 48, rgb: new int[] { 0, 0, 160 });
             ctrld(ref ori, style.twohash, "Consolas", 40, rgb: new int[] { 0, 0, 160 });
             ctrld(ref ori, style.threehash, "Consolas", 32, rgb: new int[] { 0, 50, 160 });
             ctrld(ref ori, style.fourhash, "Consolas", 32, rgb: new int[] { 0, 50, 160 });
-            ctrld(ref ori, style.exclamation, rgb: new int[] { 0, 0, 160 });
+            
             
             ctrld(ref ori, style.oneasterisk, italic: true, rgb: new int[] { 255, 0, 0 });
+            ctrld(ref ori, style.oneunder, italic: true, rgb: new int[] { 255, 0, 0 });
             ctrld(ref ori, style.twoasterisk, bold: true, rgb: new int[] { 255, 0, 0 });
+            ctrld(ref ori, style.twounder, bold: true, rgb: new int[] { 0, 255, 0 });
+            ctrld(ref ori, style.bracklet, rgb: new int[] { 0, 255, 0 });
+            ctrld(ref ori, style.exclamation, rgb: new int[] { 0, 0, 160 });
+            ctrld(ref ori, style.kw, rgb: new int[] { 0, 0, 255 });
             cjk(ref ori);
             return ori;
         }
@@ -171,7 +179,7 @@ namespace wou
                 MatchCollection mc = rgxd.Matches(ori);
                 for(int i = 0; i < mc.Count; i++)
                 {
-                    ori = rgxd.Replace(ori, colorf + fontf + fontsf + boldf + italicf + underf + " " + mc[i].Value+"\\b0\\i0\\ulnone");
+                    ori = ori.Replace(mc[i].Value, colorf + fontf + fontsf + boldf + italicf + underf + " " + mc[i].Value+"\\b0\\i0\\ulnone ");
                 }
                 
             }
@@ -206,6 +214,34 @@ namespace wou
             for(int i = 0; i < mc.Count; i++)
             {
                 maintext = rgxc.Replace(maintext, yahei + mc[i].Value.Replace(song, "") + consolas);
+            }
+            string[] s = new string[] { line1, line2, maintext };
+            ori = string.Join("\n", s);
+        }
+        static void delfont(ref string ori)
+        {
+            string[] lns = ori.Split('\n');
+            string line1 = lns[0];
+            string line2 = "";
+            List<string> ls = lns.ToList();
+            string maintext;
+            Regex rgxf = new Regex(@"(\\(((f|fs|cf)\d+)|ul|i|b))+");
+            if (lns[1].StartsWith("{\\colortbl"))
+            {
+                line2 = lns[1];
+                ls.RemoveRange(0, 2);
+                maintext = string.Join("\n", ls.ToArray());
+            }
+            else
+            {
+
+                ls.RemoveAt(0);
+                maintext = string.Join("\n", ls.ToArray());
+            }
+            MatchCollection mc = rgxf.Matches(maintext);
+            for(int i=1; i < mc.Count; i++)
+            {
+                maintext = rgxf.Replace(maintext, "");
             }
             string[] s = new string[] { line1, line2, maintext };
             ori = string.Join("\n", s);

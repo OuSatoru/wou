@@ -30,11 +30,13 @@
         {
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // richTextBox1
             // 
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.richTextBox1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(251, 384);
@@ -51,11 +53,20 @@
             this.webBrowser1.Size = new System.Drawing.Size(139, 384);
             this.webBrowser1.TabIndex = 1;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(277, 12);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(182, 314);
+            this.textBox1.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(491, 384);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.richTextBox1);
             this.Name = "Form1";
@@ -63,6 +74,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -70,6 +82,7 @@
 
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

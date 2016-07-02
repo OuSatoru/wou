@@ -13,15 +13,15 @@ namespace wou
         public const string fourhash = @"(?<=\s)(####.*)(?=\\.*par)";
         public const string exclamation = @"\!\[.*\]\(.*\)";
         public const string oneasterisk = @"(?<!\*)(\*(?!\*)[\s\S]*?\*)(?!\*)";
-        public const string oneunder = @"_((?!_).)+_";
+        public const string oneunder = @"((?<!_)(_(?!_)[\s\S]*?_)(?!_))";
         public const string twoasterisk = @"\*\*(\s|\S)*?\*\*";
         public const string twounder = @"__(\s|\S)*?__";
         public const string bracklet = @"(<.+>)|(\(.+\))|(\[.+\])";
         public const string kw = @"&gt;";
-        public const string findonehash = @"(\\((f|fs|cf)\d+)|ul|i|b)(?=\S*? #(?!#)\S*)";
-        public const string findtwohash = @"(\\((f|fs|cf)\d+)|ul|i|b)(?=\S*? ##(?!#)\S*)";
-        public const string findthreehash = @"(\\((f|fs|cf)\d+)|ul|i|b)(?=\S*? ###(?!#)\S*)";
-        public const string findfourhash = @"(\\((f|fs|cf)\d+)|ul|i|b)(?=\S*? ####\S*)";
+        public const string findonehash = @"(\\(((f|fs|cf)\d+)|ul|i|b))(?=\S*? #(?!#)\S*)";
+        public const string findtwohash = @"(\\(((f|fs|cf)\d+)|ul|i|b))(?=\S*? ##(?!#)\S*)";
+        public const string findthreehash = @"(\\(((f|fs|cf)\d+)|ul|i|b))(?=\S*? ###(?!#)\S*)";
+        public const string findfourhash = @"(\\(((f|fs|cf)\d+)|ul|i|b))(?=\S*? ####\S*)";
         
         /*public const string onehash = @"(^|\s)#(?!#).*";
         public const string twohash = @"(^|\s)##(?!#).*";
