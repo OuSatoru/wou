@@ -28,7 +28,7 @@ namespace wou
             lns[1] = addcolor(lns[1], 0, 0, 255);
             ori = string.Join("\n", lns);
             /*全行、包括、关键字*/
-            //delfont(ref ori);
+            delfont(ref ori);
             ctrld(ref ori, style.onehash, "Consolas", 48, rgb: new int[] { 0, 0, 160 });
             ctrld(ref ori, style.twohash, "Consolas", 40, rgb: new int[] { 0, 0, 160 });
             ctrld(ref ori, style.threehash, "Consolas", 32, rgb: new int[] { 0, 50, 160 });
@@ -225,7 +225,7 @@ namespace wou
             string line2 = "";
             List<string> ls = lns.ToList();
             string maintext;
-            Regex rgxf = new Regex(@"(((\\(((f|fs|cf)\d+)|ul|i|b))+ )(?!\\))");
+            Regex rgxf = new Regex(@"(((\\(((f|fs|cf)\d+)|ul|i|b))+ )(?!((\\\\)|(\\'))))|(((\\(((f|fs|cf)\d+)|ul|i|b))+)(?=((\\\\)|(\\'))))");
             if (lns[1].StartsWith("{\\colortbl"))
             {
                 line2 = lns[1];
